@@ -3,6 +3,7 @@
 ![Untitled](https://github.com/yamadan96/TodoList/assets/82156810/20ecf8dd-d6f7-43b5-9066-590903651dd9)
 
 Django
+
 以下に、新しく作成したTodoリストのREADME.mdの例を示します。このREADME.mdは、プロジェクトの概要、インストール手順、使用方法、ライセンス情報などを詳細に説明しています。
 
 ```markdown
