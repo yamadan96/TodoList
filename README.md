@@ -16,7 +16,7 @@ Django
 1. このリポジトリをクローンします。
 
 ```bash
-git clone https://github.com/your-username/TodoList.git
+git clone https://github.com/yamadan96/TodoList.git
 ```
 
 2. プロジェクトのディレクトリに移動します。
