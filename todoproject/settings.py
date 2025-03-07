@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'todolist-c4yz.onrender.com']
 
+# 環境変数を使って ALLOWED_HOSTS を設定
+ALLOWED_HOSTS.extend(os.getenv("DJANGO_ALLOWED_HOSTS", "").split(","))
 
 # Application definition
 
