@@ -43,6 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3  # v3 に更新
         with:
+          name: github-pages
           path: staticfiles  # `collectstatic` の出力ディレクトリを指定
           
   deploy:
