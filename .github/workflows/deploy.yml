@@ -43,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3  # v3 に更新
         with:
-          path: './staticfiles'  # `collectstatic` の出力ディレクトリを指定
+          path: staticfiles  # `collectstatic` の出力ディレクトリを指定
           
   deploy:
     environment:
