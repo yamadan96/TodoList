@@ -34,8 +34,39 @@ jobs:
       - name: Create static directory if it doesn't exist
         run: mkdir -p static
           
+      - name: Create basic static files
+        run: |
+          echo "body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }" > static/style.css
+          echo "console.log('TodoList application');" > static/script.js
+          
       - name: Collect static files
         run: python manage.py collectstatic --noinput
+        
+      - name: Create index.html
+        run: |
+          mkdir -p staticfiles
+          cat > staticfiles/index.html << 'EOL'
+          <!DOCTYPE html>
+          <html lang="ja">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>TodoList</title>
+              <link rel="stylesheet" href="style.css">
+          </head>
+          <body>
+              <h1>TodoList</h1>
+              <p>このサイトはGitHub Pagesでホストされています。</p>
+              <p>GitHub PagesではDjangoアプリケーションを実行できないため、静的なHTMLファイルのみを表示しています。</p>
+              <p>完全なTodoListアプリケーションを使用するには、以下の方法を検討してください：</p>
+              <ul>
+                  <li>Heroku、PythonAnywhere、Vercelなどの動的ウェブアプリケーションをホスティングできるサービスを使用する</li>
+                  <li>ローカル環境でアプリケーションを実行する</li>
+              </ul>
+              <script src="script.js"></script>
+          </body>
+          </html>
+          EOL
         
       - name: Setup Pages
         uses: actions/configure-pages@v3
