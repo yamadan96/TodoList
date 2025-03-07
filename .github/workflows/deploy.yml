@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -32,19 +32,18 @@ jobs:
           pip install -r requirements.txt
           
       - name: Create static directory if it doesn't exist
-        run: mkdir -p staticfiles
+        run: mkdir -p static
           
       - name: Collect static files
-        run: python manage.py collectstatic --noinput --clear --no-default-ignore
+        run: python manage.py collectstatic --noinput
         
       - name: Setup Pages
         uses: actions/configure-pages@v3
         
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3  # v3 に更新
+        uses: actions/upload-pages-artifact@v2
         with:
-          name: github-pages
-          path: staticfiles  # `collectstatic` の出力ディレクトリを指定
+          path: './staticfiles'
           
   deploy:
     environment:
@@ -56,4 +55,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-
