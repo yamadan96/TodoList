@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -31,21 +31,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: Create static directory if it doesn't exist
-        run: mkdir -p static
+      - name: Create public directory
+        run: mkdir -p public
           
       - name: Create basic static files
         run: |
-          echo "body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }" > static/style.css
-          echo "console.log('TodoList application');" > static/script.js
+          echo "body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }" > public/style.css
+          echo "console.log('TodoList application');" > public/script.js
           
-      - name: Collect static files
-        run: python manage.py collectstatic --noinput
-        
       - name: Create index.html
         run: |
-          mkdir -p staticfiles
-          cat > staticfiles/index.html << 'EOL'
+          cat > public/index.html << 'EOL'
           <!DOCTYPE html>
           <html lang="ja">
           <head>
@@ -74,7 +70,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './staticfiles'
+          path: './public'
           
   deploy:
     environment:
